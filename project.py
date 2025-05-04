@@ -93,7 +93,7 @@ st.markdown("""
     RefactorPro © 2025 — Built with ❤️ by Fiza Asif <br>
     <a href="https://github.com/fizasagar"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="24"/></a>
     <a href="https://www.linkedin.com/in/fiza-sagar-bb3b652b9/"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="24"/></a>
-    <a href="https://www.facebook.com/fiza.sagar.7/"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="24"/></a>
+    <a href="https://www.facebook.com/fiza.sagar.7/"><img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" width="24"/></a>
 
     </center>
 """, unsafe_allow_html=True)
