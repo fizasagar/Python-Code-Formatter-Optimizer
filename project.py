@@ -1,29 +1,17 @@
-import random
-import tempfile
-import subprocess
-import re
-import ast
-import isort
-import black
-import plotly.express as px
-import streamlit as st
-from streamlit_lottie import st_lottie
+#all given error resolved here in this code ....
 
-# Function to load Lottie animation
-def load_lottie_url(url: str):
-    import requests
-    r = requests.get(url)
-    if r.status_code == 200:
-        return r.json()
-    return {}
+from radon.complexity import cc_visit  
+from streamlit_lottie import st_lottie 
 
-# Load animation for Lottie
+
+
 animation = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_j1adxtyb.json")
 
-# Streamlit tabs for different sections
+
+ 
 tabs = st.tabs(["📝 Code Input", "⚙️ Refactored Output", "🎯 Scorecard", "📊 Module Graph", "✨ Code Optimization Suggestions"])
 
-# Code refactoring function
+
 def refactor_code(code):
     sorted_code = isort.code(code)  
     formatted_code = black.format_file_contents(sorted_code, fast=False, mode=black.Mode()) 
@@ -31,15 +19,18 @@ def refactor_code(code):
         tmp_file.write(formatted_code) 
         tmp_path = tmp_file.name  
     result = subprocess.run(["flake8", tmp_path], capture_output=True, text=True)  
-    return formatted_code, result.stdout
+    return formatted_code, result.stdout 
 
-# Function to extract imports from the code
+
+
 def extract_imports(code):
     tree = ast.parse(code)  
     imports = [node.names[0].name for node in tree.body if isinstance(node, ast.Import)]  
-    return imports
+    return imports 
 
-# Function to plot the module usage
+
+
+# Module usage ko plot karna
 def plot_import_usage(imports):
     import_counts = {imp: imports.count(imp) for imp in set(imports)}  
     colors = [f"rgb({random.randint(50,255)}, {random.randint(50,255)}, {random.randint(50,255)})" for _ in import_counts]  
@@ -48,12 +39,15 @@ def plot_import_usage(imports):
                  title="📊 Module Usage", color=list(import_counts.keys()),  
                  color_discrete_sequence=colors)  
     fig.update_layout(bargap=0.3) 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True) 
 
-# Function to generate optimization suggestions
+
+
+
 def optimize_code_suggestions(code):
     suggestions = [] 
 
+    # Specific code patterns ke liye suggestions dena
     if "for i in range(len(list))" in code:
         suggestions.append("Use 'for item in list' instead of 'for i in range(len(list))' for better readability.")
     if "== None" in code:
@@ -79,7 +73,10 @@ def optimize_code_suggestions(code):
     if "list(map(" in code:
         suggestions.append("Consider using list comprehensions instead of 'map()' for better readability and performance.")
 
-    return suggestions
+    return suggestions 
+
+
+
 
 # Footer with Social Icons
 st.markdown("""
