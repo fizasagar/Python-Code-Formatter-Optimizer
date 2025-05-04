@@ -2,14 +2,6 @@ import streamlit as st
 import ast, random, tempfile, subprocess, re, requests, isort, black
 import plotly.express as px
 from radon.complexity import cc_visit
-from streamlit_lottie import st_lottie
-
-# ----- Utility: Load Lottie animation -----
-def load_lottie_url(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
 
 # ----- Sidebar -----
 with st.sidebar:
@@ -23,13 +15,9 @@ with st.sidebar:
     if st.button("🗑️ Clear Code"):
         st.session_state['code_input'] = ""
 
-# ----- Lottie Animation -----
-animation = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_j1adxtyb.json")
-
 # ----- Title -----
 st.markdown("<h1 style='text-align: center;'>AI-Powered Python Code<br>Formatter & Optimizer 🚀</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>Empower your Python code with AI-driven formatting, optimization,<br>and analysis</p>", unsafe_allow_html=True)
-st_lottie(animation, height=100, key="lottie")
 
 # ----- Tabs -----
 tabs = st.tabs(["📝 Code Input", "⚙️ Refactored Output", "🎯 Scorecard", "📊 Module Graph", "✨ Code Optimization Suggestions"])
