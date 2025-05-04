@@ -9,7 +9,7 @@ def load_lottieurl(url):
         return None
     return r.json()
 
-lottie_lock = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_j1adxtyb.json")
+animation = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_j1adxtyb.json")
 
 
  
