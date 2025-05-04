@@ -1,8 +1,8 @@
-streamlit>=1.32.0
-black==24.3.0
-isort==5.13.2
-flake8==7.0.0
-plotly==5.21.0
-radon==6.0.1
-streamlit-lottie==0.0.5
-requests>=2.31.0
+streamlit
+streamlit-lottie
+isort
+black
+flake8
+radon
+plotly
+requests
