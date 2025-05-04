@@ -90,9 +90,10 @@ if code_input.strip():
 # ----- Footer -----
 st.markdown("""
     <hr><center>
-    RefactorPro © 2025 — Built with ❤️ by Mehak Alamgir <br>
-    <a href="https://github.com/mehakalamgir"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="24"/></a>
-    <a href="https://linkedin.com/in/mehakalamgir"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="24"/></a>
-    <a href="https://youtube.com/@mehakalamgir"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="24"/></a>
+    RefactorPro © 2025 — Built with ❤️ by Fiza Asif <br>
+    <a href="https://github.com/fizasagar"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="24"/></a>
+    <a href="https://www.linkedin.com/in/fiza-sagar-bb3b652b9/"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="24"/></a>
+    <a href="https://www.facebook.com/fiza.sagar.7/"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="24"/></a>
+
     </center>
 """, unsafe_allow_html=True)
