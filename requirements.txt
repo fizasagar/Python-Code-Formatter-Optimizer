@@ -1,0 +1,6 @@
+streamlit
+streamlit-lottie
+radon
+isort
+black
+plotly
