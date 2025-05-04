@@ -13,12 +13,7 @@ from radon.complexity import cc_visit
 from streamlit_lottie import st_lottie 
 
 
-# Function to load animation from a URL
-def load_lottieurl(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
+
 
 lottie_lock = load_lottieurl("https://assets10.lottiefiles.com/packages/lf20_j1adxtyb.json")
 
