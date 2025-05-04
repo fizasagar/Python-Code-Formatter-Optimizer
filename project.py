@@ -1,3 +1,14 @@
+import streamlit as st
+import requests  # ✅ This line was missing
+import isort
+import black
+import tempfile
+import subprocess
+import ast
+import re
+import random
+import plotly.express as px
+
 from radon.complexity import cc_visit  
 from streamlit_lottie import st_lottie 
 
