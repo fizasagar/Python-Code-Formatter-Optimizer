@@ -28,13 +28,19 @@ with tabs[0]:
 
 # ----- Refactor Code -----
 def refactor_code(code):
-    sorted_code = isort.code(code)
-    formatted_code = black.format_file_contents(sorted_code, fast=False, mode=black.Mode())
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".py", mode="w") as tmp_file:
-        tmp_file.write(formatted_code)
-        tmp_path = tmp_file.name
-    result = subprocess.run(["flake8", tmp_path], capture_output=True, text=True)
+    sorted_code = isort.code(code)  
+    try:
+        formatted_code = black.format_str(sorted_code, mode=black.Mode())  # ← safer way
+    except black.NothingChanged:
+        formatted_code = sorted_code  # ← agar koi change nahi hua toh wahi code return karo
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".py", mode="w") as tmp_file: 
+        tmp_file.write(formatted_code) 
+        tmp_path = tmp_file.name  
+
+    result = subprocess.run(["flake8", tmp_path], capture_output=True, text=True)  
     return formatted_code, result.stdout
+
 
 # ----- Extract Imports -----
 def extract_imports(code):
