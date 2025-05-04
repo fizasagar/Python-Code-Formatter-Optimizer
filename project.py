@@ -1,35 +1,16 @@
-import requests  # Ye module tumhe URL se data fetch karne ke liye chahiye
-import ast
-import random
-import subprocess
-import tempfile
-import isort
-import black
-import re
-import plotly.express as px
-import streamlit as st
-from radon.complexity import cc_visit
-from streamlit_lottie import st_lottie
+from radon.complexity import cc_visit  
+from streamlit_lottie import st_lottie 
 
-# Function to load Lottie animation from URL
-def load_lottie_url(url: str):
-    r = requests.get(url)  # URL se data fetch kar rahe ho
-    if r.status_code == 200:  # Agar status 200 hai, toh success hai
-        return r.json()  # Return animation data as JSON
-    else:
-        return None  # Agar koi issue ho toh None return karo
 
-# Tumhara animation URL
+
+
 animation = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_j1adxtyb.json")
 
-# Displaying the animation using Streamlit
-if animation:
-    st_lottie(animation, speed=1, width=700, height=500)  # Animation ko Streamlit mein show kar rahe hain
 
-# Creating tabs
+ 
 tabs = st.tabs(["📝 Code Input", "⚙️ Refactored Output", "🎯 Scorecard", "📊 Module Graph", "✨ Code Optimization Suggestions"])
 
-# Refactor code function
+
 def refactor_code(code):
     sorted_code = isort.code(code)  
     formatted_code = black.format_file_contents(sorted_code, fast=False, mode=black.Mode()) 
@@ -37,15 +18,18 @@ def refactor_code(code):
         tmp_file.write(formatted_code) 
         tmp_path = tmp_file.name  
     result = subprocess.run(["flake8", tmp_path], capture_output=True, text=True)  
-    return formatted_code, result.stdout
+    return formatted_code, result.stdout 
 
-# Extract imports from the code
+
+
 def extract_imports(code):
     tree = ast.parse(code)  
     imports = [node.names[0].name for node in tree.body if isinstance(node, ast.Import)]  
-    return imports
+    return imports 
 
-# Plot module usage
+
+
+# Module usage ko plot karna
 def plot_import_usage(imports):
     import_counts = {imp: imports.count(imp) for imp in set(imports)}  
     colors = [f"rgb({random.randint(50,255)}, {random.randint(50,255)}, {random.randint(50,255)})" for _ in import_counts]  
@@ -56,7 +40,9 @@ def plot_import_usage(imports):
     fig.update_layout(bargap=0.3) 
     st.plotly_chart(fig, use_container_width=True) 
 
-# Provide optimization suggestions
+
+
+
 def optimize_code_suggestions(code):
     suggestions = [] 
 
@@ -88,14 +74,12 @@ def optimize_code_suggestions(code):
 
     return suggestions 
 
+
+
+
 # Footer with Social Icons
 st.markdown("""
     <div class='footer'>
         RefactorPro &copy; 2025 &mdash; Built with ❤️ by Fiza Asif<br>
-        <div class='social-icons'>
-            <a href="https://github.com/mehakalamgir"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png"></a>
-            <a href="https://linkedin.com/in/mehakalamgir"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"></a>
-            <a href="https://youtube.com/@mehakalamgir"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"></a>
-        </div>
     </div>
 """, unsafe_allow_html=True)
